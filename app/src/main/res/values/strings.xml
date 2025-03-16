@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Proyecto_Catedra_ComedorApp_DSM</string>
+    <string name="cargando" />
 </resources>
