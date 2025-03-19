@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="color_fondo">#EAC891</color>
     <color name="colorbarra">#D06224</color>
+    <color name="colorbarra_transparent">#99D06224</color>
+
 </resources>
