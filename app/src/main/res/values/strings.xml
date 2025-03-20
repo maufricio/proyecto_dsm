@@ -2,6 +2,7 @@
     <string name="app_name">Proyecto_Catedra_ComedorApp_DSM</string>
     <string name="cargando" />
     <string name="logout">Cerrar sesión</string>
+    <string name="regresar">Regresar</string>
     <string name="logo_description">Logo de la aplicación</string>
 
 </resources>

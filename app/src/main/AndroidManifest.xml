@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Proyecto_Catedra_ComedorApp_DSM"
         tools:targetApi="31">
         <activity
-            android:name=".InformacionDetallada"
+            android:name=".InformacionDetalladaActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
