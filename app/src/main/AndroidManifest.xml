@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Proyecto_Catedra_ComedorApp_DSM"
         tools:targetApi="31">
         <activity
+            android:name=".AdminDashboardActivity"
+            android:exported="false" />
+        <activity
             android:name=".InformacionDetalladaActivity"
             android:exported="false" />
         <activity

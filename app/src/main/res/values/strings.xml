@@ -4,5 +4,11 @@
     <string name="logout">Cerrar sesión</string>
     <string name="regresar">Regresar</string>
     <string name="logo_description">Logo de la aplicación</string>
+    <string name="cerrarSesionText">Cerrar Sesión</string>
+    <string name="saludoDelDia">Buenas Tardes,</string>
+    <string name="usuarioNombre">Mauricio</string>
+    <string name="conteoPlatillosBienvenida">Has ingresado 5 platillos por el momento</string>
+    <string name="subTitulo_IngresoPLatillos">Comidas Ingresadas</string>
+    <string name="titulo_AgregarComida">Agregar Comida +</string>
 
 </resources>

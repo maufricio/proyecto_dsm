@@ -5,5 +5,8 @@
     <color name="color_fondo">#EAC891</color>
     <color name="colorbarra">#D06224</color>
     <color name="colorbarra_transparent">#99D06224</color>
+    <color name="color_orange_Button">#AE431E</color>
+    <color name ="color_gray">#808080</color>
+    <color name = "green_button">#B8B000</color>
 
 </resources>
