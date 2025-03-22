@@ -104,7 +104,7 @@ tools:context=".InformacionDetalladaActivity">
         android:textSize="24sp"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:background="@drawable/shadow_background" />
+        android:backgroundTint="@color/colorbarra" />
 
 
 </LinearLayout>
