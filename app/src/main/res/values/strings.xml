@@ -11,4 +11,13 @@
     <string name="subTitulo_IngresoPLatillos">Comidas Ingresadas</string>
     <string name="titulo_AgregarComida">Agregar Comida +</string>
 
+    //Login strings
+    <string name="content_description_logo">Logo de la aplicación</string>
+    <string name="content_description_banner">Imagen con platillos de comida</string>
+    <string name="login_text">Inicia sesión como administrador</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="button_text">Iniciar sesión</string>
+    <string name="forget_pass"><u>¿Olvidaste tu contraseña?</u></string>
+
 </resources>
