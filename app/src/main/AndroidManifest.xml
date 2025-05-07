@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Proyecto_Catedra_ComedorApp_DSM"
         tools:targetApi="31">
         <activity
+            android:name=".DetallesComida_AdministradorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuSuperiorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgregarComidasActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminDashboardActivity"
             android:exported="false" />
         <activity
