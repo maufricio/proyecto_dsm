@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -38,11 +39,11 @@ class PantallaInicioActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity ::class.java)
             startActivity(intent)
         }
-        val botontiempodecomida = findViewById<Button>(R.id.botontiempodecomida)
+        val Titulotiempodecomida = findViewById<TextView>(R.id.titulotiempodecomida)
         val tiempodecomida = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
 
         //Dependiendo la hora del dia se mostrara un titulo diferente
-        botontiempodecomida.text = when (tiempodecomida) {
+        Titulotiempodecomida.text = when (tiempodecomida) {
             in 0..11 -> "Desayunos > "
             in 12..17 -> "Almuerzos > "
             else -> "Cenas > "
@@ -55,18 +56,31 @@ class PantallaInicioActivity : AppCompatActivity() {
         comidasRef = database.getReference("comidas")
         comidasAdapter = ComidasAdapter(listaDeComidas)
         recyclerViewComidas.adapter = comidasAdapter
-
-        obtenerComidas()
+         //obtenemos el tiempo de comida segun el titulo
+        val tiempoDeComidaSeleccionado = when (Titulotiempodecomida.text.toString()) {
+            "Desayunos > " -> "Desayuno"
+            "Almuerzos > " -> "Almuerzo"
+            else -> "Cena"
+        }
+        obtenerComidas(tiempoDeComidaSeleccionado)
     }
 
-    private fun obtenerComidas() {
+    private fun obtenerComidas(tiempoDeComida: String) {
+        //arreglo de los dias de la semana
+        val diasDeLaSemana = arrayOf("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado")
+        // Obtener el día actual
+        val diaActual = diasDeLaSemana[Calendar.getInstance().get(Calendar.DAY_OF_WEEK) -1]
+
         comidasRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 listaDeComidas.clear()
                 for (comidaSnapshot in snapshot.children) {
                     val comida = comidaSnapshot.getValue(Registros_Comidas::class.java)
                     comida?.let {
+                        //Mostramos las comidas dependiendo de la hora y dia de la semana
+                        if (it.tiempoDia == tiempoDeComida && it.dia == diaActual) {
                         listaDeComidas.add(it)
+                        }
                     }
                 }
                 comidasAdapter.notifyDataSetChanged()

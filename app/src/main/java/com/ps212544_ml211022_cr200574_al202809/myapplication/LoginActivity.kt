@@ -1,6 +1,8 @@
 package com.ps212544_ml211022_cr200574_al202809.myapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +18,14 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //boton btnlogin ppara ir adminDashboard
+        val btnlogin = findViewById<Button>(R.id.btnLogin)
+        btnlogin.setOnClickListener {
+            val intent = Intent(this, AdminDashboardActivity::class.java)
+            startActivity(intent)
+        }
     }
+
+
 }

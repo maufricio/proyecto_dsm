@@ -43,23 +43,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:layout_width="336dp"
-            android:layout_height="wrap_content"
+            android:layout_width="204dp"
+            android:layout_height="73dp"
             android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/botontiempodecomida"
+            <TextView
+                android:id="@+id/titulotiempodecomida"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@android:color/transparent"
                 android:text="Desayunos > "
                 android:textColor="@color/black"
                 android:textSize="30sp" />
 
 
-
         </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewComidas"
             android:layout_width="match_parent"
