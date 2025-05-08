@@ -94,6 +94,7 @@
                 >
 
                 <LinearLayout
+                    android:id = "@+id/tomarFotoContainer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -122,6 +123,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:id = "@+id/galeriaFotoContainer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -170,10 +172,11 @@
                     android:text="Nombre de la comida"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/interblackfont"
+
                     android:textSize="15sp" />
 
                 <EditText
+                    android:id = "@+id/nombreComidaField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="@color/white"
@@ -194,10 +197,11 @@
                     android:text="Descripción de la comida"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/interblackfont"
+
                     android:textSize="15sp" />
 
                 <EditText
+                    android:id="@+id/descripcionComidaField"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:background="@color/white"
@@ -216,13 +220,14 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Precio"
+                    android:text="Precio $$$"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-                    android:fontFamily="@font/interblackfont"
+
                     android:textSize="15sp" />
 
                 <EditText
+                    android:id = "@+id/precioComidaField"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="40dp"
@@ -255,9 +260,10 @@
                         android:text="Día:"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:fontFamily="@font/interblackfont"
+
                         android:textSize="15sp" />
                     <Spinner
+                        android:id = "@+id/diaSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -279,10 +285,11 @@
                         android:text="Tiempo:"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:fontFamily="@font/interblackfont"
+
                         android:textSize="15sp"
                         android:layout_marginRight="10dp"/>
                     <Spinner
+                        android:id = "@+id/tiempoDiaSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@color/white"
@@ -306,13 +313,13 @@
         android:paddingEnd="50dp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/overlayButton"
+            android:id="@+id/guardarComidaButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/blue_marine"
             android:paddingTop="10dp"
-            android:paddginBottom = "10dp"
+            android:paddingBottom = "10dp"
             app:cornerRadius="5dp"
             android:text="Guardar" />
     </FrameLayout>
