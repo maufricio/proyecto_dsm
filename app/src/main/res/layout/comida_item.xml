@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="@color/color_fondo"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewComida"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@drawable/loading"
+            android:contentDescription="@string/imagen_de_la_comida"
+            app:shapeAppearanceOverlay="@style/RoundedImageView"/>
+
+        <TextView
+            android:id="@+id/textViewNombreComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            tools:text="@string/nombre_de_la_comida" />
+
+        <TextView
+            android:id="@+id/textViewPrecioComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="14sp"
+            tools:text="@string/precio_de_la_comida" />
+
+        <TextView
+            android:id="@+id/textViewDescripcionComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="12sp"
+            android:gravity="start"
+            tools:text="@string/descripcion_de_la_comida" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

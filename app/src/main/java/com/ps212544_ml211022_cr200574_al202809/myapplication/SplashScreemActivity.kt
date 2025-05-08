@@ -44,7 +44,7 @@ class SplashScreemActivity : AppCompatActivity() {
         }, 2000)
 
         Handler().postDelayed({
-            val intent = Intent(this, AdminDashboardActivity::class.java)
+            val intent = Intent(this, PantallaInicioActivity::class.java)
             startActivity(intent)
             finish()
         }, 10000)

@@ -20,4 +20,14 @@
     <string name="button_text">Iniciar sesión</string>
     <string name="forget_pass"><u>¿Olvidaste tu contraseña?</u></string>
 
+    //Comida Item
+        <string name="imagen_de_la_comida">Imagen de la comida</string>
+        <string name="nombre_de_la_comida">Nombre de la Comida</string>
+        <string name="precio_de_la_comida">$</string>
+        <string name="descripcion_de_la_comida">Descripción</string>
+
+
+
+
+
 </resources>
