@@ -110,10 +110,15 @@ class PantallaInicioActivity : AppCompatActivity() {
                 comidasAdapter.notifyDataSetChanged()
             }
 
+
             override fun onCancelled(error: DatabaseError) {
                 Log.e("FirebaseError", "Error al obtener datos: ${error.message}")
                 Toast.makeText(this@PantallaInicioActivity, "Error al obtener datos", Toast.LENGTH_SHORT).show()
             }
+
+
+
+
         })
     }
 }

@@ -24,10 +24,7 @@
         <string name="imagen_de_la_comida">Imagen de la comida</string>
         <string name="nombre_de_la_comida">Nombre de la Comida</string>
         <string name="precio_de_la_comida">$</string>
-        <string name="descripcion_de_la_comida">Descripción</string>
-
-
-
+        <string name="Descripción">Descripción</string>
 
 
 </resources>

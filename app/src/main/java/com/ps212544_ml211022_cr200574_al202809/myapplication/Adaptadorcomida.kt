@@ -17,12 +17,13 @@ class ComidasAdapter(
         val imageView: ImageView = itemView.findViewById(R.id.imageViewComida)
         val textViewNombre: TextView = itemView.findViewById(R.id.textViewNombreComida)
         val textViewPrecio: TextView = itemView.findViewById(R.id.textViewPrecioComida)
-        val textViewDescripcion: TextView = itemView.findViewById(R.id.textViewDescripcionComida)
+        //val textViewDescripcion: TextView = itemView.findViewById(R.id.textViewDescripcionComida)
 
         fun bind(comida: Registros_Comidas) {
             textViewNombre.text = comida.nombre
-            textViewPrecio.text = comida.precio
-            textViewDescripcion.text = comida.descripcion
+            textViewPrecio.text = "$${comida.precio}"
+            //textViewDescripcion.text = comida.descripcion
+
 
 
             Picasso.get()
