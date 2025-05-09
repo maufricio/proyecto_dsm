@@ -26,9 +26,10 @@
             android:id="@+id/textViewNombreComida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="3dp"
             android:textStyle="bold"
             android:textSize="16sp"
+            android:textColor="@color/black"
             tools:text="@string/nombre_de_la_comida" />
 
         <TextView
@@ -37,20 +38,23 @@
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:paddingBottom="8dp"
+            android:paddingBottom="0dp"
+            android:textColor="@color/black"
             android:textSize="14sp"
             tools:text="@string/precio_de_la_comida" />
 
-        <TextView
-            android:id="@+id/textViewDescripcionComida"
+        <Button
+            android:id="@+id/btnDescripcionComida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:paddingBottom="8dp"
+            android:background="@android:color/transparent"
+            android:text="@string/Descripción"
             android:textSize="12sp"
-            android:gravity="start"
-            tools:text="@string/descripcion_de_la_comida" />
+            android:textColor="@color/black"
+            android:gravity="start" />
+
 
     </LinearLayout>
 
