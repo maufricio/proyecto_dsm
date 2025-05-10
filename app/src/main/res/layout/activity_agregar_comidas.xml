@@ -26,13 +26,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Agregar Comida"
-            android:fontFamily="@font/interblackfont"
+            android:textColor="@color/black"
+            android:fontFamily="@font/regularinterfont"
             android:textAlignment="center"
             android:textSize="24sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="(Publica tu comida llenando el formulario)"
+            android:textColor="@color/color_gray"
             android:textAlignment="center"
             />
 
@@ -147,9 +149,24 @@
                         android:layout_gravity="center"
                         />
                 </LinearLayout>
+
+
             </LinearLayout>
 
-
+            <TextView
+                android:id = "@+id/previsualizarImagenText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/previsualizarImagen"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:background="@color/color_fondo"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textSize="20dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -228,13 +245,13 @@
 
                 <EditText
                     android:id = "@+id/precioComidaField"
+                    android:inputType="numberDecimal"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="40dp"
                     android:background="@color/white"
                     android:textColor="@color/black"
                     android:paddingStart="15dp"
-                    android:text="$"
                     />
             </LinearLayout>
 
@@ -321,6 +338,8 @@
             android:paddingTop="10dp"
             android:paddingBottom = "10dp"
             app:cornerRadius="5dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             android:text="Guardar" />
     </FrameLayout>
 

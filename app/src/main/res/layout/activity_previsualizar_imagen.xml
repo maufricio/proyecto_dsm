@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrevisualizarImagen"
+    android:background="@color/color_fondo"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/previsualizarImagen"
+            android:gravity="center"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            />
+
+        <ImageView
+            android:id="@+id/previewImage"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scaleType="centerCrop"
+            android:layout_margin="16dp"
+            android:contentDescription="Vista previa de imagen"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id = "@+id/buttonRegresar"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:text="@string/regresar"
+            app:cornerRadius="10dp"
+            android:backgroundTint="@color/blue_marine"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

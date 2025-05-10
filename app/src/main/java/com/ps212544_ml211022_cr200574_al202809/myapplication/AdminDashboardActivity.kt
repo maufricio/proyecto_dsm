@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -20,10 +22,10 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.ps212544_ml211022_cr200574_al202809.myapplication.registros.Registros_Comidas
+import com.squareup.picasso.Picasso
 
 class AdminDashboardActivity : AppCompatActivity() {
 
-    private lateinit var imageView : ImageView
     private lateinit var imageSaludoDia : ImageView
     private lateinit var spinnerDias : Spinner
     private lateinit var spinnerTiempoComida : Spinner
@@ -31,6 +33,10 @@ class AdminDashboardActivity : AppCompatActivity() {
     private lateinit var noComidasContainer : LinearLayout
     private lateinit var database : DatabaseReference
     private lateinit var linearLayoutRegistros : LinearLayout
+    private lateinit var listaComidas : ArrayList<Registros_Comidas>
+    private lateinit var listaComidasFiltradas : ArrayList<Registros_Comidas>
+    private lateinit var scrollViewComidas : ScrollView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +44,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard_admin)
 
         //imageView = findViewById(R.id.logo)
-       // imageView.setImageResource(R.drawable.logo)
+        // imageView.setImageResource(R.drawable.logo)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -47,20 +53,23 @@ class AdminDashboardActivity : AppCompatActivity() {
         }
 
         imageSaludoDia = findViewById(R.id.saludo_tiempoDia)
-        imageSaludoDia.setImageResource(R.drawable.image_evening_wbg)
+        imageSaludoDia.setImageResource(R.drawable.image_evening_wbg) // Se agrega la imagen del saludo. Posteriormente tiene que ser condicional
         btnAgregarComida = findViewById(R.id.buttonAgregarComida)
         noComidasContainer = findViewById(R.id.noComidasContainer)
         database = FirebaseDatabase.getInstance().getReference("comidas")
         linearLayoutRegistros = findViewById(R.id.listaRegistroComidas)
+        scrollViewComidas = findViewById(R.id.scrollViewComidas)
 
-        val itemsDias = listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
+        val itemsDias =
+            listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
         val itemsTiempoComida = listOf("Desayuno", "Almuerzo", "Cena")
 
         spinnerDias = findViewById(R.id.spinnerDias)
         spinnerDias.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsDias)
 
         spinnerTiempoComida = findViewById(R.id.spinnerTiemposComida)
-        spinnerTiempoComida.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsTiempoComida)
+        spinnerTiempoComida.adapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsTiempoComida)
 
 
         btnAgregarComida.setOnClickListener {
@@ -69,35 +78,70 @@ class AdminDashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /* TODO:
-            1.Hacer la búsqueda de items en base a cuando el spinner de día y tiempo de comida cambien
-            esto hará que podamos filtrar en base a esos parámetros
-            2. Calcular el tiempo actual, y en base a eso hacer el saludo al usuario de: "Buenos días", "Buenas tardes" o "Buenas noches"
-            3. Hacer la búsqueda del conteo de cuántos ítems se tienen almacenados en la base de datos para el tiempo de comida.
-         */
-        this.obtenerRegistros("Miercoles")
+        this.listaComidas = ArrayList()
+        this.listaComidasFiltradas = ArrayList()
+        obtenerRegistros(spinnerDias.selectedItem.toString(), this.listaComidas, this.listaComidasFiltradas)
 
+        spinnerDias.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                listaComidas.clear()
+                listaComidasFiltradas.clear()
+                // Call obtenerRegistros cuando un nuevo item es seleccionado
+                obtenerRegistros(
+                    spinnerDias.selectedItem.toString(),
+                    listaComidas,
+                    listaComidasFiltradas
+                )
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // No hacer nada
+            }
+        }
+
+        spinnerTiempoComida.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>,
+                                        view: View?,
+                                        position: Int,
+                                        id: Long) {
+                listaComidasFiltradas.clear()
+                filtrarComidas(listaComidas, listaComidasFiltradas)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // No hacer nada
+            }
+        }
     }
 
 
-    private fun obtenerRegistros(diaComida : String) {
+    private fun obtenerRegistros(diaComida : String,
+                                 listaComidas : ArrayList<Registros_Comidas>,
+                                 listaComidasFiltradas: ArrayList<Registros_Comidas>
+    ) {
         database.orderByChild("dia").equalTo(diaComida).addValueEventListener(object :
             ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                linearLayoutRegistros.removeAllViews() // Esto es para limpiar el LinearLayout
+                listaComidas.clear()
+                linearLayoutRegistros.removeAllViews()
                 if (snapshot.exists()) {
-                    noComidasContainer.visibility = View.GONE
                     for (registroSnapshot in snapshot.children) {
                         val registro = registroSnapshot.getValue(Registros_Comidas::class.java)
                         registro?.let {
                             it.id = registroSnapshot.key ?: "" // Asignar el ID del registro
-                            mostrarRegistro(it)
+                            //mostrarRegistro(it)
+                            listaComidas.add(it)
                         }
                     }
+                    Toast.makeText(this@AdminDashboardActivity, "Sí hay comidas para el día: ${diaComida}", Toast.LENGTH_SHORT).show()
+                    filtrarComidas(listaComidas, listaComidasFiltradas) // Mandamos a llamar esta función aquí porque es cuando ya todos los datos han sido traídos de la base de datos
                 } else {
-                    Toast.makeText(this@AdminDashboardActivity, "No hay  registrados", Toast.LENGTH_SHORT).show()
-                    noComidasContainer.visibility = View.VISIBLE
+                    Toast.makeText(this@AdminDashboardActivity, "No hay comidas registradas para el día: ${diaComida}", Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -105,6 +149,33 @@ class AdminDashboardActivity : AppCompatActivity() {
                 Toast.makeText(this@AdminDashboardActivity, "Error al leer los datos: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun recorrerComidas(listaComidas : ArrayList<Registros_Comidas>) {
+        for (comida in listaComidas) {
+            mostrarRegistro(comida)
+        }
+    }
+
+    private fun filtrarComidas(listaComidas : ArrayList<Registros_Comidas>, listaFiltradaComidas : ArrayList<Registros_Comidas>) {
+        for (comida in listaComidas) {
+            if (comida.tiempoDia == spinnerTiempoComida.selectedItem.toString()) {
+                listaFiltradaComidas.add(comida)
+            }
+        }
+
+        // lógica de data displaying
+        linearLayoutRegistros.removeAllViews() // Esto es para limpiar el LinearLayout
+        if (listaFiltradaComidas.isEmpty()) {
+            linearLayoutRegistros.visibility = View.GONE
+            scrollViewComidas.visibility = View.GONE
+            noComidasContainer.visibility = View.VISIBLE
+        } else {
+            noComidasContainer.visibility = View.GONE
+            scrollViewComidas.visibility = View.VISIBLE
+            linearLayoutRegistros.visibility = View.VISIBLE
+            recorrerComidas(listaFiltradaComidas)
+        }
     }
 
 
@@ -119,6 +190,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         val descripcionComida = view.findViewById<TextView>(R.id.comidaDescripcion)
         val precioComida = view.findViewById<TextView>(R.id.comidaPrecio)
         val diaComida = view.findViewById<TextView>(R.id.comidaDia)
+        val imagenComida = view.findViewById<ImageView>(R.id.imagenComida)
         val layoutAddStudentItem = view.findViewById<LinearLayout>(R.id.layoutAddStudentItem)
 
 
@@ -127,6 +199,17 @@ class AdminDashboardActivity : AppCompatActivity() {
         descripcionComida.text = "${registro.descripcion}"
         precioComida.text = "$ ${registro.precio}"
         diaComida.text = "${registro.dia} , ${registro.tiempoDia}"
+
+        Toast.makeText(this@AdminDashboardActivity, "Esta es la URL traída: ${registro.url_foto}", Toast.LENGTH_SHORT).show()
+
+        if(registro.url_foto == "no hay link" || registro.url_foto == null || registro.url_foto == "") {
+            Toast.makeText(this@AdminDashboardActivity, "Error debido a que no hay imagenes", Toast.LENGTH_SHORT).show()
+        } else {
+            Picasso.get()
+                .load(registro.url_foto) // URL de Cloudinary que viene desde Firebase
+                .into(imagenComida)
+        }
+
 
         layoutAddStudentItem.visibility = View.VISIBLE
 
@@ -139,13 +222,12 @@ class AdminDashboardActivity : AppCompatActivity() {
                 putExtra("precioComida", registro.precio)
                 putExtra("diaComida", registro.dia)
                 putExtra("tiempoComida", registro.tiempoDia)
+                putExtra("url_foto", registro.url_foto)
             }
             startActivity(intent)
-            finish() // Eliminando esta actividad del historial de la RAM
         }
 
 
         linearLayoutRegistros.addView(view)
-
     }
 }

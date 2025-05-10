@@ -26,9 +26,10 @@
             >
 
             <ImageView
+                android:id = "@+id/imagenComida"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/carne"
+
                 android:scaleType="centerCrop"
                 />
         </LinearLayout>

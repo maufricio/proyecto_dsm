@@ -10,6 +10,7 @@
     <string name="conteoPlatillosBienvenida">Has ingresado 5 platillos por el momento</string>
     <string name="subTitulo_IngresoPLatillos">Comidas Ingresadas</string>
     <string name="titulo_AgregarComida">Agregar Comida +</string>
+    <string name="previsualizarImagen">Previsualizar Imagen</string>
 
     //Login strings
     <string name="content_description_logo">Logo de la aplicación</string>
@@ -21,10 +22,10 @@
     <string name="forget_pass"><u>¿Olvidaste tu contraseña?</u></string>
 
     //Comida Item
-        <string name="imagen_de_la_comida">Imagen de la comida</string>
-        <string name="nombre_de_la_comida">Nombre de la Comida</string>
-        <string name="precio_de_la_comida">$</string>
-        <string name="Descripción">Descripción</string>
+    <string name="imagen_de_la_comida">Imagen de la comida</string>
+    <string name="nombre_de_la_comida">Nombre de la Comida</string>
+    <string name="precio_de_la_comida">$</string>
+    <string name="Descripción">Descripción</string>
 
 
 </resources>
