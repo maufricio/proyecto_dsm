@@ -1,8 +1,10 @@
 package com.ps212544_ml211022_cr200574_al202809.myapplication
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +19,7 @@ class ComidasAdapter(
         val imageView: ImageView = itemView.findViewById(R.id.imageViewComida)
         val textViewNombre: TextView = itemView.findViewById(R.id.textViewNombreComida)
         val textViewPrecio: TextView = itemView.findViewById(R.id.textViewPrecioComida)
-        //val textViewDescripcion: TextView = itemView.findViewById(R.id.textViewDescripcionComida)
+        val btnDescripcion: Button = itemView.findViewById(R.id.btnDescripcionComida)
 
         fun bind(comida: Registros_Comidas) {
             textViewNombre.text = comida.nombre
@@ -44,6 +46,12 @@ class ComidasAdapter(
     override fun onBindViewHolder(holder: ComidasViewHolder, position: Int) {
         val comida = listaComidas[position]
         holder.bind(comida)
+        holder.btnDescripcion.setOnClickListener {
+            val context = holder.itemView.context
+            val intent = Intent(context, InformacionDetalladaActivity::class.java)
+            intent.putExtra("comida_id", comida.id)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount() = listaComidas.size
