@@ -78,11 +78,21 @@ class AgregarComidasActivity : AppCompatActivity() {
         galeriaFotoContainer = findViewById(R.id.galeriaFotoContainer)
         previsualizarImagenText = findViewById(R.id.previsualizarImagenText)
 
-        val itemsDias = listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
+        // Inicialización de los spinners
+
+        val itemsDias = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
         val itemsTiempoComida = listOf("Desayuno", "Almuerzo", "Cena")
 
-        diaSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsDias)
-        tiempoDiaSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsTiempoComida)
+        val adapterDias = ArrayAdapter(this, R.layout.spinner_item, itemsDias)
+        adapterDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        diaSpinner.adapter = adapterDias
+
+        val adapterTiempoComida = ArrayAdapter(this, R.layout.spinner_item, itemsTiempoComida)
+        adapterTiempoComida.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        tiempoDiaSpinner.adapter = adapterTiempoComida
+
 
         // Inicialización de Retrofit
 
