@@ -60,16 +60,20 @@ class AdminDashboardActivity : AppCompatActivity() {
         linearLayoutRegistros = findViewById(R.id.listaRegistroComidas)
         scrollViewComidas = findViewById(R.id.scrollViewComidas)
 
-        val itemsDias =
-            listOf("Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo")
+        val itemsDias = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
         val itemsTiempoComida = listOf("Desayuno", "Almuerzo", "Cena")
 
+        val adapterDias = ArrayAdapter(this, R.layout.spinner_item, itemsDias)
+        adapterDias.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
         spinnerDias = findViewById(R.id.spinnerDias)
-        spinnerDias.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsDias)
+        spinnerDias.adapter = adapterDias
+
+        val adapterTiempoComida = ArrayAdapter(this, R.layout.spinner_item, itemsTiempoComida)
+        adapterTiempoComida.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         spinnerTiempoComida = findViewById(R.id.spinnerTiemposComida)
-        spinnerTiempoComida.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_item, itemsTiempoComida)
+        spinnerTiempoComida.adapter = adapterTiempoComida
 
 
         btnAgregarComida.setOnClickListener {

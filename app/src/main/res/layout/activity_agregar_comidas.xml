@@ -84,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:text="Ingresa tu foto de la comida"
                     android:textAlignment="center"
-                    android:fontFamily="@font/interblackfont"
+                    android:fontFamily="@font/regularinterfont"
+                    android:textColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -117,6 +118,7 @@
                         android:layout_weight="2"
                         android:textSize="16dp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:layout_marginEnd="30dp"
                         android:textAlignment="center"
                         android:layout_gravity="center"
@@ -145,6 +147,7 @@
                         android:layout_weight="2"
                         android:textSize="16dp"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:textAlignment="center"
                         android:layout_gravity="center"
                         />
@@ -258,18 +261,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="30dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -279,41 +281,38 @@
                         android:textColor="@color/white"
 
                         android:textSize="15sp" />
+
                     <Spinner
-                        android:id = "@+id/diaSpinner"
+                        android:id="@+id/diaSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginTop="10dp"
                         android:layout_marginRight="10dp"
-                        />
+                        android:background="@color/white" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginBottom="30dp"
-                    android:orientation="vertical"
-                    >
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
                         android:text="Tiempo:"
                         android:textAlignment="center"
-                        android:textColor="@color/white"
 
-                        android:textSize="15sp"
-                        android:layout_marginRight="10dp"/>
+                        android:textColor="@color/white"
+                        android:textSize="15sp" />
+
                     <Spinner
-                        android:id = "@+id/tiempoDiaSpinner"
+                        android:id="@+id/tiempoDiaSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/white"
-                        android:layout_marginBottom="40dp"
-                        android:layout_marginTop="10dp"/>
+                        android:background="@color/white" />
                 </LinearLayout>
-
 
 
             </LinearLayout>
