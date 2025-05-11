@@ -15,6 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.button.MaterialButton
@@ -30,6 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.io.File
 
 class AgregarComidasActivity : AppCompatActivity() {
 
@@ -55,6 +57,10 @@ class AgregarComidasActivity : AppCompatActivity() {
     private var imageUri : Uri? = null
 
     private var imageUrlSubida : String? = "no hay link"
+
+    // Constantes para la toma de fotos
+    private val REQUEST_IMAGE_CAPTURE = 2
+    private lateinit var photoUri: Uri
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,7 +126,6 @@ class AgregarComidasActivity : AppCompatActivity() {
                 val permission = android.Manifest.permission.READ_MEDIA_IMAGES
 
                 if(ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Pidiendo permiso READ_MEDIA_IMAGES", Toast.LENGTH_SHORT).show()
                     // Verifica que debería mostrar un diálogo de solicitud de permiso
                     if(ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
                         Toast.makeText(this, "Necesitamos acceso a tus imágenes para seleccionar desde galería.", Toast.LENGTH_SHORT).show()
@@ -135,7 +140,6 @@ class AgregarComidasActivity : AppCompatActivity() {
                 val permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
 
                 if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Pidiendo permiso READ_EXTERNAL_STORAGE", Toast.LENGTH_SHORT).show()
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
                         Toast.makeText(this, "Se necesita permiso para acceder a tus fotos.", Toast.LENGTH_LONG).show()
                     }
@@ -145,6 +149,16 @@ class AgregarComidasActivity : AppCompatActivity() {
                     Toast.makeText(this, "Permiso ya concedido", Toast.LENGTH_SHORT).show()
                     abrirGaleria()
                 }
+            }
+        }
+
+        tomarFotoContainer.setOnClickListener {
+            val permission = android.Manifest.permission.CAMERA
+
+            if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(permission), REQUEST_PERMISSION)
+            } else {
+                abrirCamara()
             }
         }
 
@@ -215,12 +229,17 @@ class AgregarComidasActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.data != null) {
             this.imageUri = data.data
             Toast.makeText(this, "Imagen seleccionada", Toast.LENGTH_SHORT).show()
-            //Habilitar el texto de "Previsualizar la imagen"
             previsualizarImagenText.visibility = TextView.VISIBLE
-            //subirImagenACloudinary(imageUri!!) Funcion para subir la imagen a cloudinary
+        }
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            this.imageUri = photoUri
+            Toast.makeText(this, "Foto tomada", Toast.LENGTH_SHORT).show()
+            previsualizarImagenText.visibility = TextView.VISIBLE
         }
     }
 
@@ -233,6 +252,18 @@ class AgregarComidasActivity : AppCompatActivity() {
                 Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show()
             }
         }
+
+
+    }
+
+    private fun abrirCamara() {
+        val intent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
+
+        val photoFile = File.createTempFile("IMG_", ".jpg", externalCacheDir)
+        photoUri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.provider", photoFile)
+
+        intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, photoUri)
+        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
     }
 
 }
