@@ -1,15 +1,10 @@
 package com.ps212544_ml211022_cr200574_al202809.myapplication
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.database.FirebaseDatabase
 import com.ps212544_ml211022_cr200574_al202809.myapplication.registros.Registros_Comidas
 import com.squareup.picasso.Picasso
@@ -24,14 +19,8 @@ class InformacionDetalladaActivity : AppCompatActivity() {
         if (comidaId != null) {
             obtenerComidaDesdeFirebase(comidaId)
         }
-
-        val btnRegresar = findViewById<Button>(R.id.btnRegresar)
-        btnRegresar.setOnClickListener {
-            val intent = Intent(this, PantallaInicioActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
     }
+
     private fun obtenerComidaDesdeFirebase(comidaId: String) {
         val database = FirebaseDatabase.getInstance()
         val comidaRef = database.getReference("comidas").child(comidaId)

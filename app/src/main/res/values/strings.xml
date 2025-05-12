@@ -10,7 +10,7 @@
     <string name="conteoPlatillosBienvenida">Has ingresado 5 platillos por el momento</string>
     <string name="subTitulo_IngresoPLatillos">Comidas Ingresadas</string>
     <string name="titulo_AgregarComida">Agregar Comida +</string>
-    <string name="previsualizarImagen">Previsualizar Imagen</string>
+    <string name="previsualizarImagen">Previsualización</string>
 
     //Login strings
     <string name="content_description_logo">Logo de la aplicación</string>

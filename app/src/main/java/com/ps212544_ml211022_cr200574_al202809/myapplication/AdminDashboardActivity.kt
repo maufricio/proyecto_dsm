@@ -208,8 +208,8 @@ class AdminDashboardActivity : AppCompatActivity() {
         // Mostrar los datos del registros
         nombreComida.text = "${registro.nombre}"
         descripcionComida.text = "${registro.descripcion}"
-        precioComida.text = "$ ${registro.precio}"
-        diaComida.text = "${registro.dia} , ${registro.tiempoDia}"
+        precioComida.text = "$${registro.precio}"
+        diaComida.text = "${registro.dia}, ${registro.tiempoDia}"
 
         if(registro.url_foto == "no hay link" || registro.url_foto == null || registro.url_foto == "") {
             Toast.makeText(this@AdminDashboardActivity, "Error debido a que no hay imagenes", Toast.LENGTH_SHORT).show()

@@ -21,7 +21,6 @@ class DetallesComida_AdministradorActivity : AppCompatActivity() {
     private lateinit var imageView : ImageView
     private lateinit var modificarComidaButton : MaterialButton
     private lateinit var eliminarComidaButton : MaterialButton
-    private lateinit var btnRegresarAtras : ImageView
 
     private lateinit var comidaId : String
     private lateinit var comidaNombre : String
@@ -60,7 +59,6 @@ class DetallesComida_AdministradorActivity : AppCompatActivity() {
         precioComidaDetalle = findViewById(R.id.precioComidaDetalle)
         diaComidaDetalle = findViewById(R.id.diaComidaDetalle)
         tiempoComidaDetalle = findViewById(R.id.tiempoComidaDetalle)
-        btnRegresarAtras = findViewById(R.id.btnRegresarAtras)
         database = FirebaseDatabase.getInstance().getReference("comidas")
 
         // Capturar los datos del intent
@@ -81,10 +79,6 @@ class DetallesComida_AdministradorActivity : AppCompatActivity() {
         precioComidaDetalle.setText(comidaPrecio)
         diaComidaDetalle.setText(comidaDia)
         tiempoComidaDetalle.setText(comidaTiempoDia)
-
-        btnRegresarAtras.setOnClickListener {
-            finish()
-        }
 
         modificarComidaButton.setOnClickListener {
             modificarComida()

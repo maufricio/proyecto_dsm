@@ -50,7 +50,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green_dark_container"
+        android:background="@drawable/add_food_background"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
@@ -58,48 +58,40 @@
         android:orientation="vertical"
         >
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingresa foto de la comida"
+            android:textAlignment="center"
+            android:fontFamily="@font/regularinterfont"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"
-            android:background="@color/white"
+            android:background="@drawable/rounded_borders_bg"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:paddingRight="20dp"
             android:paddingLeft="20dp"
+            android:gravity="center"
             android:orientation="vertical"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.5"
-                android:paddingTop="10dp"
-
-                >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ingresa tu foto de la comida"
-                    android:textAlignment="center"
-                    android:fontFamily="@font/regularinterfont"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
 
                 <LinearLayout
                     android:id = "@+id/tomarFotoContainer"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     >
@@ -128,8 +120,8 @@
                 </LinearLayout>
                 <LinearLayout
                     android:id = "@+id/galeriaFotoContainer"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="horizontal"
                     >
@@ -137,7 +129,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/galleryicon"
-                        android:layout_weight="1.5"
+                        android:layout_weight="1"
                         />
 
                     <TextView
@@ -145,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:text="Tomar desde Galería"
                         android:layout_weight="2"
-                        android:textSize="16dp"
+                        android:textSize="15dp"
                         android:textStyle="bold"
                         android:textColor="@color/black"
                         android:textAlignment="center"
@@ -162,10 +154,11 @@
                 android:layout_height="wrap_content"
                 android:text="@string/previsualizarImagen"
                 android:textAlignment="center"
-                android:textColor="@color/black"
-                android:background="@color/color_fondo"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
+                android:textColor="@color/white"
+                android:background="@drawable/add_food_background"
+                android:paddingVertical="5dp"
+                android:paddingHorizontal="9dp"
+                android:layout_margin="8dp"
                 android:textSize="20dp"
                 android:layout_gravity="center"
                 android:visibility="gone"
@@ -192,14 +185,14 @@
                     android:text="Nombre de la comida"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-
+                    android:layout_marginBottom="5dp"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id = "@+id/nombreComidaField"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@color/white"
+                    android:background="@drawable/edit_text_style"
                     android:textColor="@color/black"
                     android:paddingStart="15dp"
                     />
@@ -217,14 +210,14 @@
                     android:text="Descripción de la comida"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
-
+                    android:layout_marginBottom="5dp"
                     android:textSize="15sp" />
 
                 <EditText
                     android:id="@+id/descripcionComidaField"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@color/white"
+                    android:background="@drawable/edit_text_style"
                     android:textColor="@color/black"
                     android:paddingStart="15dp"
                     />
@@ -240,10 +233,10 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="Precio $$$"
-                    android:textAlignment="textStart"
+                    android:text="Precio: $"
+                    android:textAlignment="textEnd"
                     android:textColor="@color/white"
-
+                    android:layout_marginRight="8dp"
                     android:textSize="15sp" />
 
                 <EditText
@@ -252,17 +245,18 @@
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="40dp"
-                    android:background="@color/white"
+                    android:background="@drawable/edit_text_style"
                     android:textColor="@color/black"
                     android:paddingStart="15dp"
                     />
+
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
@@ -276,10 +270,10 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Día:"
+                        android:text="Día"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-
+                        android:layout_marginBottom="5dp"
                         android:textSize="15sp" />
 
                     <Spinner
@@ -287,7 +281,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
-                        android:background="@color/white" />
+                        android:textAlignment="center"
+                        android:background="@drawable/edit_text_style" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -301,9 +296,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="10dp"
-                        android:text="Tiempo:"
+                        android:text="Tiempo"
                         android:textAlignment="center"
-
+                        android:layout_marginBottom="5dp"
                         android:textColor="@color/white"
                         android:textSize="15sp" />
 
@@ -311,7 +306,8 @@
                         android:id="@+id/tiempoDiaSpinner"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/white" />
+                        android:textAlignment="center"
+                        android:background="@drawable/edit_text_style" />
                 </LinearLayout>
 
 
@@ -326,7 +322,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-50dp"
         android:paddingStart="50dp"
-        android:paddingEnd="50dp">
+        android:paddingEnd="50dp"
+        >
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/guardarComidaButton"

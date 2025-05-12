@@ -119,16 +119,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -143,61 +142,57 @@
                     android:layout_gravity="center"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:layout_marginLeft="15dp"
                     android:textSize="18sp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id= "@+id/buttonAgregarComida"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/green_button"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/green_dark_container"
                     android:gravity="center"
                     android:text="@string/titulo_AgregarComida"
                     android:textColor="@color/white"
+                    android:layout_marginHorizontal="20dp"
                     android:textStyle="bold"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginBottom="35dp"
                     app:cornerRadius="16dp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
 
                 <Spinner
                     android:id="@+id/spinnerDias"
-                    android:layout_width="50dp"
+                    android:layout_width="1dp"
                     android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:layout_marginTop="-25dp"
                     android:textAlignment="center"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="20dp"
                     android:textColor="@color/black"
-
                     android:textSize="16sp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/shadow_background"
                     android:padding="10dp"
-
+                    android:layout_marginRight="20dp"
                     />
 
                 <Spinner
                     android:id="@+id/spinnerTiemposComida"
-                    android:layout_width="50dp"
+                    android:layout_width="1dp"
                     android:layout_height="50dp"
                     android:textAlignment="center"
-                    android:layout_marginTop="-25dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginStart="20dp"
                     android:textColor="@color/black"
-
                     android:textSize="16sp"
                     android:padding="10dp"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/shadow_background"
+                    />
             </LinearLayout>
 
 
