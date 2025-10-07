@@ -36,6 +36,7 @@ class AdminDashboardActivity : AppCompatActivity() {
     private lateinit var listaComidas : ArrayList<Registros_Comidas>
     private lateinit var listaComidasFiltradas : ArrayList<Registros_Comidas>
     private lateinit var scrollViewComidas : ScrollView
+    private lateinit var recordCountTextView : TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +60,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance().getReference("comidas")
         linearLayoutRegistros = findViewById(R.id.listaRegistroComidas)
         scrollViewComidas = findViewById(R.id.scrollViewComidas)
+        recordCountTextView = findViewById(R.id.countingTextView)
 
         val itemsDias = listOf("Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo")
         val itemsTiempoComida = listOf("Desayuno", "Almuerzo", "Cena")
@@ -121,6 +123,8 @@ class AdminDashboardActivity : AppCompatActivity() {
                 // No hacer nada
             }
         }
+
+        getRecordCount() // Invocamos a la función que nos devolverá cuantos platillos tenemos actualmente en la base de datos.
     }
 
 
@@ -146,6 +150,9 @@ class AdminDashboardActivity : AppCompatActivity() {
                     filtrarComidas(listaComidas, listaComidasFiltradas) // Mandamos a llamar esta función aquí porque es cuando ya todos los datos han sido traídos de la base de datos
                 } else {
                     Toast.makeText(this@AdminDashboardActivity, "No hay comidas registradas para el día: ${diaComida}", Toast.LENGTH_SHORT).show()
+                    noComidasContainer.visibility = View.VISIBLE
+                    scrollViewComidas.visibility = View.GONE
+                    linearLayoutRegistros.visibility = View.GONE
                 }
             }
 
@@ -201,10 +208,8 @@ class AdminDashboardActivity : AppCompatActivity() {
         // Mostrar los datos del registros
         nombreComida.text = "${registro.nombre}"
         descripcionComida.text = "${registro.descripcion}"
-        precioComida.text = "$ ${registro.precio}"
-        diaComida.text = "${registro.dia} , ${registro.tiempoDia}"
-
-        Toast.makeText(this@AdminDashboardActivity, "Esta es la URL traída: ${registro.url_foto}", Toast.LENGTH_SHORT).show()
+        precioComida.text = "$${registro.precio}"
+        diaComida.text = "${registro.dia}, ${registro.tiempoDia}"
 
         if(registro.url_foto == "no hay link" || registro.url_foto == null || registro.url_foto == "") {
             Toast.makeText(this@AdminDashboardActivity, "Error debido a que no hay imagenes", Toast.LENGTH_SHORT).show()
@@ -221,6 +226,7 @@ class AdminDashboardActivity : AppCompatActivity() {
         // **➡ Agregar evento click al botón de la flecha**
         layoutAddStudentItem.setOnClickListener {
             val intent = Intent(this, DetallesComida_AdministradorActivity::class.java).apply {
+                putExtra("idComida", registro.id)
                 putExtra("nombreComida", registro.nombre)
                 putExtra("descripcionComida", registro.descripcion)
                 putExtra("precioComida", registro.precio)
@@ -233,5 +239,19 @@ class AdminDashboardActivity : AppCompatActivity() {
 
 
         linearLayoutRegistros.addView(view)
+    }
+
+    private fun getRecordCount() {
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // snapshot.childrenCount gives you the number of direct children
+                val count = snapshot.childrenCount
+                recordCountTextView.text = "Hasta ahora, has ingresado: ${count} ${if (count.toInt() == 1) "platillo" else "platillos"} de comida."
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(this@AdminDashboardActivity, "Error getting record count: ${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

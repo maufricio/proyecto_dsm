@@ -21,16 +21,27 @@
             android:gravity="center"
             android:textSize="25dp"
             android:textColor="@color/black"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             />
 
-        <ImageView
-            android:id="@+id/previewImage"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:scaleType="centerCrop"
-            android:layout_margin="16dp"
-            android:contentDescription="Vista previa de imagen"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_dark_container"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            app:cardCornerRadius="15dp"
+            >
+            <ImageView
+                android:id="@+id/previewImage"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:scaleType="centerCrop"
+                android:layout_margin="16dp"
+                android:contentDescription="Vista previa de imagen"/>
+
+        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
             android:id = "@+id/buttonRegresar"
