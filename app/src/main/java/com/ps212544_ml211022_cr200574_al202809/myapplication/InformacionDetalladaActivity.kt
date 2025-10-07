@@ -1,6 +1,7 @@
 package com.ps212544_ml211022_cr200574_al202809.myapplication
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -15,6 +16,7 @@ import com.ps212544_ml211022_cr200574_al202809.myapplication.registros.Registros
 import com.squareup.picasso.Picasso
 
 class InformacionDetalladaActivity : AppCompatActivity() {
+    private var nombreComida: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_informacion_detallada)
@@ -30,6 +32,10 @@ class InformacionDetalladaActivity : AppCompatActivity() {
             val intent = Intent(this, PantallaInicioActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        val btnPedido = findViewById<Button>(R.id.btnPedido)
+        btnPedido.setOnClickListener {
+            enviarPedidoPorWhatsApp()
         }
     }
     private fun obtenerComidaDesdeFirebase(comidaId: String) {
@@ -48,7 +54,7 @@ class InformacionDetalladaActivity : AppCompatActivity() {
                     tituloTextView.text = comida.nombre
                     descripcionTextView.text = comida.descripcion
                     precioTextView.text = "$${comida.precio}"
-
+                    nombreComida = comida.nombre
                     Picasso.get()
                         .load(comida.url_foto)
                         .placeholder(R.drawable.loading)
@@ -62,5 +68,27 @@ class InformacionDetalladaActivity : AppCompatActivity() {
             Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun enviarPedidoPorWhatsApp() {
+        if (nombreComida.isNullOrEmpty()) {
+            Toast.makeText(this, "No se ha cargado la información de la comida", Toast.LENGTH_SHORT).show()
+            return
+        }
 
+        // Número de WhatsApp Business (formato internacional sin +)
+        val phoneNumber = "50377284510"
+
+        // Mensaje que aparecerá en WhatsApp
+        val message = "¡Hola! 👋 Me gustaría hacer un pedido anticipado de: $nombreComida"
+
+        // Creamos el enlace
+        val url = "https://wa.me/$phoneNumber?text=${Uri.encode(message)}"
+
+        // Abrimos WhatsApp
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "No se pudo abrir WhatsApp", Toast.LENGTH_SHORT).show()
+        }
+    }
 }
